@@ -21,3 +21,9 @@
 9. The 9-John_Doe file give full permissions to user, read and execute to groups, then write and execute to others
 
 10. The 10-mirror_permissions file sets the mode of the file hello the same as olleh’s mode.
+
+11. The 11-directories_permissions file adds execute permissions to all directories and subdirectories excluding files
+
+12. The 12-directory_permissions file creates a directory with permissions 751
+
+13. The 13-change_group changes the group of a file
