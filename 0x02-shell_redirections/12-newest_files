@@ -1,2 +1,2 @@
 #!/bin/bash
-ls -l | sort -rk8 | head -10 | cut -w -f 9
+ls -t1 | head -10
