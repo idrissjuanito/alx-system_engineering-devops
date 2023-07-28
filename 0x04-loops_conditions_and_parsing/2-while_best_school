@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# prints a word to the console using while loop
+i=0
+while [ $i -lt 10 ]; do
+	echo "Best School"
+	(( i++ ))
+done
