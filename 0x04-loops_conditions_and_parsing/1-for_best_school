@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 # Prints a word 10 times
-for i in {0..10}; do
+for i in {0..9}; do
 	echo "Best School"
 done
