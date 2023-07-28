@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+# creates a file with pid and run infinite loop with signal handlers
+function sig_handlers(){
+	echo "I hate the kill command"
+	rm /var/run/myscript.pid
+	exit
+}
+
+echo $$ >> /var/run/myscript.pid
+trap 'sig_handlers' 15
+trap 'sig_handlers' 3
+trap 'echo "Y U no love me?!"' 2
+while true;do
+	echo "To infinity and beyond"
+	sleep 2
+done
