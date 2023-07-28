@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# Prints a formatted result of ls command
+out=$(ls)
+for fl in $out;do
+	echo "$fl" | cut -d '-' -f 2
+done
