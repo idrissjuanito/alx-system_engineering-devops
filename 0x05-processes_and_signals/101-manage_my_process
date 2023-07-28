@@ -4,17 +4,17 @@
 args=("start" "stop" "restart")
 pidbg=0
 if [[ $# -lt 1 || ! ${args[*]} =~ $1 ]];then
-	echo "Usage: manage_my_process {start|stop|restart} "$#
+	echo "Usage: manage_my_process {start|stop|restart} "
 fi
 
 function start_cmds(){
-	sudo ./manage_my_process &
+	./manage_my_process &
 	pidbg=$!
 	echo $pidbg >> /var/run/my_process.pid
 }
 function stop_cmds(){
 	pkill -9 -f manage_my_process
-	rm /var/run/my_process.pid
+	sudo rm /var/run/my_process.pid
 }
 if [[ $1 == "start" ]]; then
 	start_cmds
