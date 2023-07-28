@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# prints a list of processes in sorted and human readable order
+# shellcheck disable=SC2009
+ps -aux | grep "bash"
