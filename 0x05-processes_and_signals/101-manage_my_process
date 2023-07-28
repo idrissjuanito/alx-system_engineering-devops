@@ -13,7 +13,7 @@ function start_cmds(){
 	echo $pidbg >> /var/run/my_process.pid
 }
 function stop_cmds(){
-	pkill -9 -f manage_my_process
+	pkill -9 -f ./manage_my_process
 	sudo rm /var/run/my_process.pid
 }
 if [[ $1 == "start" ]]; then
