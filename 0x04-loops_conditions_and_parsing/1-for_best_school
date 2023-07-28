@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 # Prints a word 10 times
 for i in {0..9}; do
-	echo "Best School"
+	if [ $i -lt 10 ]; then
+		echo "Best School"
+	fi
 done
