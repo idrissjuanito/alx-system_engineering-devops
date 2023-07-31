@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # provide information about a particular file
 if [[ -e "school" ]]; then
-	echo "school file exist"
+	echo "school file exists"
 	if [[ -f "school" ]]; then
 		echo "school is a regular file"
 	fi
