@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# Compose a presentation of user using /etc/passwd
+
+fl="/etc/passwd"
+IFS=":"
+
+while read -r user pw uid guid userinfo homedir shel;do
+	echo "The user $user is part of the $guid gang, lives in $homedir and rides $shel. $uid's place is protected by the passcode $pw, more info about the user here: $userinfo"
+
+done < $fl
