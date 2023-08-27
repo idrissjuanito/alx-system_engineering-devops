@@ -1,0 +1,14 @@
+1. A Server is a Hardware or software application in a datacenter and handles requests link to the application it serves
+2. The role of a domain name is to provide a human friendly name for reaching a server that is tied to an ip address
+3. The role of a webserver is to handle http request and send back a response to the client
+4. www is a CNAME DNS Record
+5. An application server provides business logic for request that require dynamic computing
+6. A database stores persistent data of the application
+7. The server communicates with the user through a network mostly the internet
+
+The server here is the single point of failure because there is no backup server and if this one goes down the whole application
+becomes inaccessible
+If the server gets overwhelmed by traffic the are no scaling options meaning the application
+becomes inacessible and same goes for maintenance.
+
+https://imgur.com/XIjlnHz
