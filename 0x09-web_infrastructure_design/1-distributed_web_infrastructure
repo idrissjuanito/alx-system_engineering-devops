@@ -1,0 +1,22 @@
+- This is a distributed web infrastructure with two servers.
+_ One of the servers can serve as a backup in case the other one goes down
+- having two servers also mean traffic can be distributed between them
+- The load balancer can be configured using the Round Robin load balancing algorithm where
+user request are equaly distributed between all available servers, ie: first user goes to server 1
+and second user goes to server 2
+- Active-Active load balancing permits all server to handle request concurently
+meaning traffic is distributed between servers
+- Active-passive load balancing reserves one or some of the servers as backup that only kick off when
+an active server becomes unavailable
+- Database primary-replica clusters operate with one serving the whole application and the other dormant
+for recovery if the primary db gets damaged or becomes unavaible
+
+- The load balalancer is the single point of failure here because it is the uniq entry point
+to the application and has no replica
+
+– The server is not protected by firewall or https communications meanning messages are not encrypted
+and can be easily read by any one who can intercept the traffic.
+– Firewall rules could protect the server from unathourized access to ports that should not be public
+– Monitoring should be enabled for prompt alerts if traffic is broken at any point in the process
+
+https://imgur.com/undefined
