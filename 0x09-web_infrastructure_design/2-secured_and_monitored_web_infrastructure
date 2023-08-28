@@ -1,0 +1,14 @@
+Firewalls are hardware or software security layers than control access to a network by outer networks
+A firewall is added on a web infrastructure to secure the servers from unauthorized access
+
+Traffic is served over https so that it can be encrypted and secured from cyber attacks
+
+Monitoring is used for traffic metrics on the server like traffic (number of users), Resources usage like
+RAM, bandwith
+
+Monitoring tool collects data by tracking all activities and events that occur on the server and this is done through triggers.
+
+Terminating ssl at load balancing level is an issue because data becomes exposed and any intrusion on the servers
+will expose sensitive information.
+
+Diagram: https://imgur.com/Fs0XdZ1
