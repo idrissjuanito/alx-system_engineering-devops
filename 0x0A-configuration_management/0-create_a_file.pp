@@ -1,5 +1,5 @@
 # creates a file in tmp folder
-Class default {
+node 'default' {
     file {'/tmp/school':
         ensure  => 'present',
         owner   => 'www-data',
