@@ -1,3 +1,5 @@
+# creates a file in tmp folder
+
 node 'defaults' {
     file { '/tmp/school':
         ensure  => 'present',
