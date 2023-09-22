@@ -1,8 +1,7 @@
 # creates a file in tmp folder
-
-Class defaults {
-    file { '/tmp/school':
-        ensure  => present,
+class default {
+    file {'/tmp/school':
+        ensure  => 'present',
         owner   => 'www-data',
         group   => 'www-data',
         mode    => '0744',
