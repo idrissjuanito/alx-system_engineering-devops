@@ -3,6 +3,5 @@ node 'default' {
     exec { 'kill process':
         command => 'pkill -9 killmenowa',
         path    => ['/usr/bin']
-
     }
 }
