@@ -19,7 +19,7 @@ apt update -y
 apt install -y nginx
 
 # Run nginx for first time
-systemctl enable --now nginx
+nginx
 
 # Change default webpage to server for server root domain request
 echo "Hello World!" > /usr/share/nginx/html/index.html
