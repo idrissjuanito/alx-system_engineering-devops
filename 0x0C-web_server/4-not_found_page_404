@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+# Install packages that will assist to configure nginx package repo
+apt install -y curl gnupg2 ca-certificates lsb-release \
+        debian-archive-keyring
+
+# Download and save nginx signing key
+curl https://nginx.org/keys/nginx_signing.key | gpg --dearmor \
+| tee /usr/share/keyrings/nginx-archive-keyring.gpg >/dev/null
+
+# Setting variables for apt updating apt source file
+OS=$(lsb_release -is | tr '[:upper:]' '[:lower:]') RELEASE=$(lsb_release -cs)
+echo "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] \
+http://nginx.org/packages/${OS} ${RELEASE} nginx" \ | tee /etc/apt/sources.list.d/nginx.list
+
+# updating package information and install nginx
+apt update -y
+apt install -y nginx
+
+# Run nginx for first time
+nginx
+
+# Change default webpage to server for server root domain request
+echo "Hello World!" > /usr/share/nginx/html/index.html
+
+# edits nginx default server conf to redirect a particular uri
+redirect="location /redirect_me {\n         return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;\n    }\n"
+sed -i "/location \//i $redirect" /etc/nginx/conf.d/default.conf
+
+notfound="location = 404.html {\n\troot /usr/share/nginx/html;\n}"
+sed -i "s/#\(error_page *404.html.*\)/\1/;/error_page *404/a\    $notfound" /etc/nginx/conf.d/default.conf
+nginx -s reload
