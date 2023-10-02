@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+# install and configure haproxy as load balancer for my two servers
+if [ ! $(which haproxy) ]; then
+    apt install --no-install-recommends software-properties-common
+    add-apt-repository ppa:vbernat/haproxy-2.7 -y
+    apt update -y
+    apt install haproxy=2.7.\*
+fi
+
+mkdir /etc/haproxy
+cat <<-EOF > /etc/haproxy/haproxy.cfg
+defaults
+    timeout connect 3600
+    timeout server 360000
+    timeout client 360000
+
+frontend loadin
+    listen \*:80
+    mode http
+    default_backend loadbalance
+
+backend loadbalace
+    mode http
+    server 394869-web-01 18.234.253.13:80
+    server 394869-web-02 100.25.15.253:80
+EOF
+
+test -f /etc/haproxy/haproxy.cfg || exit 1
+haproxy -f /etc/haproxy/haproxy.cfg
