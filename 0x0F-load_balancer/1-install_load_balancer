@@ -7,7 +7,9 @@ if [ ! $(which haproxy) ]; then
     apt install haproxy=2.7.\* -y
 fi
 
-mkdir /etc/haproxy
+if [ ! -d /etc/haproxy ]; then
+    mkdir /etc/haproxy
+fi
 cat <<-EOF > /etc/haproxy/haproxy.cfg
 defaults
     timeout connect 3600
@@ -26,4 +28,4 @@ backend loadbalance
 EOF
 
 test -f /etc/haproxy/haproxy.cfg || exit 1
-haproxy -f /etc/haproxy/haproxy.cfg &
+service haproxy start
