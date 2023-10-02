@@ -4,7 +4,7 @@ if [ ! $(which haproxy) ]; then
     apt install --no-install-recommends software-properties-common
     add-apt-repository ppa:vbernat/haproxy-2.7 -y
     apt update -y
-    apt install haproxy=2.7.\*
+    apt install haproxy=2.7.\* -y
 fi
 
 mkdir /etc/haproxy
@@ -15,15 +15,15 @@ defaults
     timeout client 360000
 
 frontend loadin
-    listen \*:80
+    bind *:80
     mode http
     default_backend loadbalance
 
-backend loadbalace
+backend loadbalance
     mode http
     server 394869-web-01 18.234.253.13:80
     server 394869-web-02 100.25.15.253:80
 EOF
 
 test -f /etc/haproxy/haproxy.cfg || exit 1
-haproxy -f /etc/haproxy/haproxy.cfg
+haproxy -f /etc/haproxy/haproxy.cfg &
