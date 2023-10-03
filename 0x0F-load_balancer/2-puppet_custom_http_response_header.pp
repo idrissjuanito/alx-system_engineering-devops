@@ -36,15 +36,18 @@ node 'default' {
         content => $config_str,
         require => Service['nginx'],
     }
-    file { "/usr/nginx/html/index.html":
+    file { "/usr/share/nginx/html/index.html":
         ensure  => present,
         content => "Hello World!\n",
         require => Package['nginx'],
     }
-    file { "/etc/nginx/html/404.html":
+    file { "/usr/share/nginx/html/404.html":
         ensure  => present,
         content => "Ceci n'est pas une page\n",
         require => Package['nginx'],
+    }
+    file { "/etc/nginx/sites-enabled/default":
+        ensure  => absent,
     }
     exec { "/usr/sbin/nginx -s reload":
         subscribe   => File['/etc/nginx/conf.d/default.conf'],
