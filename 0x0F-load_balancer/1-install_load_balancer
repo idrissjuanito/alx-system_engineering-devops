@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 # install and configure haproxy as load balancer for my two servers
 if [ ! "$(which haproxy)" ]; then
-    apt install --no-install-recommends software-properties-common
+    sudo apt-get -y install --no-install-recommends software-properties-common
     add-apt-repository ppa:vbernat/haproxy-2.7
     apt update && apt upgrade -y
-    apt install haproxy=2.7.\*
+    apt install -y haproxy=2.8.\*
 fi
 
 if [ ! -d /etc/haproxy ]; then
@@ -28,4 +28,4 @@ backend loadbalance
 EOF
 
 test -f /etc/haproxy/haproxy.cfg || exit 1
-service haproxy start
+haproxy -c -f /etc/haproxy.haproxy.cfg

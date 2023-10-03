@@ -39,6 +39,7 @@ node 'default' {
     file { "/etc/nginx/html/404.html":
         ensure  => present,
         content => "Ceci n'est pas une page\n",
+        require => Package['nginx'],
     }
     service { "nginx":
         ensure  => running,
