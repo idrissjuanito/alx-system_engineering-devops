@@ -2,7 +2,7 @@
 # install and configure haproxy as load balancer for my two servers
 if [ ! "$(which haproxy)" ]; then
     sudo apt-get -y install --no-install-recommends software-properties-common
-    add-apt-repository ppa:vbernat/haproxy-2.7
+    add-apt-repository ppa:vbernat/haproxy-2.8
     apt update && apt upgrade -y
     apt install -y haproxy=2.8.\*
 fi
@@ -12,20 +12,19 @@ if [ ! -d /etc/haproxy ]; then
 fi
 cat <<-EOF > /etc/haproxy/haproxy.cfg
 defaults
-    timeout connect 3600
-    timeout server 360000
-    timeout client 360000
+    mode http
+    timeout connect 10s
+    timeout server 20s
+    timeout client 15s
 
 frontend loadin
     bind *:80
-    mode http
     default_backend loadbalance
 
 backend loadbalance
-    mode http
-    server 394869-web-01 18.234.253.13:80
-    server 394869-web-02 100.25.15.253:80
+    balance roundrobin
+    server 394869-web-01 18.234.253.13:80 check
+    server 394869-web-02 100.25.15.253:80 check
 EOF
 
-test -f /etc/haproxy/haproxy.cfg || exit 1
 haproxy -c -f /etc/haproxy.haproxy.cfg
