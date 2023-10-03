@@ -3,8 +3,8 @@
 if [ ! "$(which haproxy)" ]; then
     sudo apt-get -y install --no-install-recommends software-properties-common
     add-apt-repository ppa:vbernat/haproxy-2.8
-    apt update && apt upgrade -y
-    apt install -y haproxy=2.8.\*
+    apt-get update -y
+    apt-get install -y haproxy
 fi
 
 if [ ! -d /etc/haproxy ]; then
@@ -27,4 +27,5 @@ backend loadbalance
     server 394869-web-02 100.25.15.253:80 check
 EOF
 
+sed 's/ENABLED=0/ENABLED=1/' /etc/default/haproxy
 service haproxy start
