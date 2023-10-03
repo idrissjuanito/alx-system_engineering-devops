@@ -50,6 +50,6 @@ node 'default' {
         ensure  => absent,
     }
     exec { "reload":
-        command => "/usr/sbin/nginx -s reload"
+        command => "/usr/sbin/service nginx restart",
     }
 }
