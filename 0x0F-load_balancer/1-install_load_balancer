@@ -27,4 +27,4 @@ backend loadbalance
     server 394869-web-02 100.25.15.253:80 check
 EOF
 
-haproxy -c -f /etc/haproxy/haproxy.cfg
+service haproxy start
