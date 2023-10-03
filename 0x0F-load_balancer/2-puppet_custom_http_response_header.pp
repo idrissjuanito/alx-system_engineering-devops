@@ -26,24 +26,24 @@ node 'default' {
     package { "nginx":
         ensure => installed
     }
+    service { "nginx":
+        ensure  => running,
+        enable  => true,
+        require => Package['nginx'],
+    }
     file { "/etc/nginx/conf.d/default.conf":
         ensure  => present,
         content => $config_str,
-        require => Package['nginx'],
+        require => Service['nginx'],
     }
     file { "/usr/nginx/html/index.html":
         ensure  => present,
         content => "Hello World!\n",
-        require => Service['nginx'],
+        require => Package['nginx'],
     }
     file { "/etc/nginx/html/404.html":
         ensure  => present,
         content => "Ceci n'est pas une page\n",
-        require => Package['nginx'],
-    }
-    service { "nginx":
-        ensure  => running,
-        enable  => true,
         require => Package['nginx'],
     }
     exec { "/usr/sbin/nginx -s reload":
