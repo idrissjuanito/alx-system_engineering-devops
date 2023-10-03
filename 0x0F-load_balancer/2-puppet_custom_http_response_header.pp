@@ -31,6 +31,11 @@ node 'default' {
         enable  => true,
         require => Package['nginx'],
     }
+    exec { "reload":
+        command     => "/usr/sbin/service nginx restart",
+        subscribe   => "/etc/nginx/conf.d/default.conf",
+        refreshonly => true,
+    }
     file { "/etc/nginx/conf.d/default.conf":
         ensure  => present,
         content => $config_str,
@@ -48,8 +53,5 @@ node 'default' {
     }
     file { "/etc/nginx/sites-enabled/default":
         ensure  => absent,
-    }
-    exec { "reload":
-        command => "/usr/sbin/service nginx restart",
     }
 }
