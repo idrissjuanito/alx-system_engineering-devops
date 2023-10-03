@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # installs and configures nginx on a given machine
-if [ ! "$(which nginx)" ];
+if [[ ! -x /usr/local/sbin/nginx ]];
 then
      Install packages that will assist to configure nginx package repo
      apt install -y curl gnupg2 ca-certificates lsb-release \
@@ -21,6 +21,7 @@ then
 fi
 
  # Run nginx for first time
+ nginx
 
 # Change default webpage to server for server root domain request
 echo "Hello World!" > /usr/share/nginx/html/index.html
