@@ -49,8 +49,7 @@ node 'default' {
     file { "/etc/nginx/sites-enabled/default":
         ensure  => absent,
     }
-    exec { "/usr/sbin/nginx -s reload":
-        subscribe   => File['/etc/nginx/conf.d/default.conf'],
-        refreshonly => true
+    exec { "reload":
+        command => "/usr/sbin/nginx -s reload"
     }
 }
