@@ -23,8 +23,12 @@ server {
 | NCONF
 
 node 'default' {
+    exec { "update":
+        command => "/usr/bin/apt-get update -y",
+    }
     package { "nginx":
-        ensure => installed
+        ensure  => latest,
+        require => Exec['update'],
     }
     service { "nginx":
         ensure  => running,
@@ -32,7 +36,7 @@ node 'default' {
         require => Package['nginx'],
     }
     exec { "reload":
-        command     => "/usr/sbin/service nginx restart",
+        command     => "/usr/sbin/nginx -s reload",
         subscribe   => "/etc/nginx/conf.d/default.conf",
         refreshonly => true,
     }
