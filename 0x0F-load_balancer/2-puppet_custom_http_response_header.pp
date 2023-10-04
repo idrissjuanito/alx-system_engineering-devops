@@ -35,9 +35,12 @@ node 'default' {
         enable  => true,
         require => Package['nginx'],
     }
+    file { "/etc/nginx/sites-enabled/default":
+        ensure  => absent,
+    }
     exec { "reload":
         command     => "/usr/sbin/nginx -s reload",
-        subscribe   => "/etc/nginx/conf.d/default.conf",
+        subscribe   => File["/etc/nginx/conf.d/default.conf"],
         refreshonly => true,
     }
     file { "/etc/nginx/conf.d/default.conf":
@@ -54,8 +57,5 @@ node 'default' {
         ensure  => present,
         content => "Ceci n'est pas une page\n",
         require => Package['nginx'],
-    }
-    file { "/etc/nginx/sites-enabled/default":
-        ensure  => absent,
     }
 }
