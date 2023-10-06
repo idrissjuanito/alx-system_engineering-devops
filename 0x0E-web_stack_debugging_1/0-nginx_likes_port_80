@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 # script makes sure nginx is listening to prot 80
-sed -i -r 's/(.+[ :])[0-9]+(.+)/\180\1/g' /etc/nginx/sites-enabled/default
+sed -i -r 's/(listen.*[ :])[0-9]+(;| .*;$)/\180\2/g' /etc/nginx/sites-enabled/default
