@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# switches the user and confirms with whoami
+if [[ ! $(id -u "$1") ]];then
+	useradd "$1"
+fi
+su - "$1"
+whoami
