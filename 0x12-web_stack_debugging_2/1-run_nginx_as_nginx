@@ -4,7 +4,7 @@ if ! id nginx &>/dev/null
 then
 	useradd -m nginx
 fi
-if ! nginx -v
+if ! nginx -v &>/dev/null
 then
 	apt-get update -y
 	apt-get install nginx -y
