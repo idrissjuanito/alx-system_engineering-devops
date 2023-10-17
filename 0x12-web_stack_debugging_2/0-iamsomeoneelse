@@ -4,4 +4,4 @@ if ! id "$?" &>/dev/null
 then
 	useradd -m "$1"
 fi
-sudo -H -u otheruser bash -c "whoami"
+sudo -H -u "$1" bash -c "whoami"
