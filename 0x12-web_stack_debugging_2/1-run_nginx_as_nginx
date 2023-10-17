@@ -17,4 +17,9 @@ server {
 	}
 }
 EOF
-nginx -s reload;
+if ! service nginx status
+then
+	nginx
+else
+	nginx -s reload;
+fi
