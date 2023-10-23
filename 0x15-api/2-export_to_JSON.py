@@ -15,8 +15,7 @@ if __name__ == "__main__":
     todos = r.json()
     json_todos = []
     for todo in todos:
-        task = { 'task': todo.get('title'),
-                'completed': todo.get('completed'),
+        task = {'task': todo.get('title'), 'completed': todo.get('completed'),
                 'username': user}
         json_todos.append(task)
     json_data = {f'{argv[1]}': json_todos}
