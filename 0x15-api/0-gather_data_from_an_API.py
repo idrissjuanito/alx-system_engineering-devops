@@ -2,8 +2,8 @@
 """
 request data from public api using arg passed to script
 """
-from sys import argv
 import requests
+from sys import argv
 
 
 if __name__ == "__main__":
@@ -19,6 +19,6 @@ if __name__ == "__main__":
         if todo.get('completed'):
             completed += 1
             completed_todos.append(todo.get('title'))
-    print(f"Employee {user} is done with tasks({completed}/{total_todos})")
+    print(f"Employee {user} is done with tasks({completed}/{total_todos}):")
     for todo in completed_todos:
         print(f"\t {todo}")
