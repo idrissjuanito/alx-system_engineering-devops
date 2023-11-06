@@ -8,7 +8,7 @@ function parse_dns() {
 }
 
 if [[ $# -lt 2 ]]; then
-	subs=("www" "web-01" "web-02" "lb-01")
+	subs=("www" "lb-01" "web-01" "web-02")
 	for sub in "${subs[@]}"; do
 		domain=$sub.$1
 		parse_dns "$domain"
