@@ -1,0 +1,20 @@
+defaults
+    timeout connect 3600
+    timeout server 360000
+    timeout client 360000
+
+frontend loadin
+    bind *:80
+    bind *:443 ssl crt /etc/haproxy/privatekey.pem
+    mode http
+    use_backend default_back if { path -i / }
+    default_backend loadbalance
+
+backend loadbalance
+    mode http
+    server 394869-web-01 18.234.253.13:80
+    server 394869-web-02 100.25.15.253:80
+
+backend default_back
+    mode http
+    server default 127.0.0.1:8080
