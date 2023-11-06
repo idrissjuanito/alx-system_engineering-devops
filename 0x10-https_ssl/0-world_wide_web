@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+# quieries and displays dns records of a given domain
+
+function parse_dns() {
+	records=$(dig $1 | grep -A1 'ANSWER SECTION')
+	echo "$records" | awk '/^[^;]+/ { split($1, A, ".")
+	print "The subdomain "A[1]" is a "$4" record and points to "$5 }'
+}
+
+if [[ $# -lt 2 ]]; then
+	subs=("www" "web-01" "web-02" "lb-01")
+	for sub in "${subs[@]}"; do
+		domain=$sub.$1
+		parse_dns "$domain"
+	done
+else
+	domain=$2.$1
+	parse_dns "$domain"
+fi
