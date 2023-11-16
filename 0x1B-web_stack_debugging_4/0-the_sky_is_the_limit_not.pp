@@ -1,3 +1,4 @@
+# This manifest sets system configs for the number of files that can be opened at once
 node default {
     exec { 'edit files':
       command => 'echo "fs.file-max = 70000" >> /etc/sysctl.conf;\
