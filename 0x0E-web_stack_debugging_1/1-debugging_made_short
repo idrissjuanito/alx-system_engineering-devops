@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# script makes sure nginx is listening to prot 80
+proc_port_80=$(netstat -lpn | grep -m 1 "[ :]80 " | awk "{print $7}")
+sed -i -r 's/(listen.*[ :])[0-9]+(;| .*;$)/\180\2/g' /etc/nginx/sites-enabled/default
+service nginx restart
