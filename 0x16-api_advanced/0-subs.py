@@ -1,3 +1,4 @@
+""" function for querying reddit api """
 import requests
 
 
