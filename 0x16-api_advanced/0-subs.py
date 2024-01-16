@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 """ function for querying reddit api """
 import requests
 
