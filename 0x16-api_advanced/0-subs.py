@@ -7,7 +7,7 @@ def number_of_subscribers(subreddit):
     """
         quries the reddit api based on the subreddit argument
     """
-    res = requests.get(subreddit)
+    res = requests.get(subreddit, allow_redirects=False)
     if res.status_code >= 400:
         return 0
     return res.json()["data"]["subscribers"]
