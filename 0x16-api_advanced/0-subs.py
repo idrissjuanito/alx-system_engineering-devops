@@ -1,5 +1,6 @@
 import requests
 
+
 def number_of_subscribers(subreddit):
     """
         quries the reddit api based on the subreddit argument
